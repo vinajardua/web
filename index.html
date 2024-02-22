@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viña Jardua</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-TTodj9XnjBgUpjJrEw23l63rCG+PxKSlAon5QKv0LXR83YB2BLJGv9RnWLlYWj6E" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            max-height: 100vh;
+            /* Establece la altura máxima al 100% de la altura de la ventana */
+            overflow-y: auto;
+            /* Activa el desbordamiento vertical cuando el contenido excede la altura máxima */
+        }
+
+        #actionButton {
+            float: left;
+            background-color: #3e180d;
+            color: #cba568;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font: Arial;
+            font-size: 20px;
+        }
+
+        header {
+            background-color: #3e180d;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+        }
+
+        nav {
+            background-color: #3e180d;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #cba568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #3e180d;
+            color: #cba568;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            bottom: 0;
+            font-weight: bold;
+        }
+
+        /* Estilos para la sección Quiénes Somos */
+        .content {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content h2 {
+            color: #333;
+        }
+
+        .content p {
+            color: #666;
+        }
+
+        /* Estilos para la sección de contacto */
+        .contacto {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .contacto form {
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para el mapa */
+        #mapa {
+            height: 300px;
+            /* Altura del mapa */
+            width: 100%;
+            /* Ancho completo */
+        }
+
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            margin: auto;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: #cba568;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px 3px 3px 3px;
+            background-color: #3e180d;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 3px 3px 3px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: #3e180d;
+        }
+
+        /* Estilos para los puntos */
+        .dot-container {
+            text-align: center;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #cba568;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active,
+        .dot:hover {
+            background-color: #3e180d;
+        }
+
+        /* Estilos para las imágenes */
+        .img-container {
+            text-align: center;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        /* Estilos para la sección de suscripción */
+        #suscripcion {
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        #suscripcion h2 {
+            margin-bottom: 20px;
+        }
+
+        #suscripcion input[type="email"] {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #suscripcion button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #suscripcion button:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            display: block;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 13px;
+        }
+
+        .contacto {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .columna {
+            width: 50%;
+            /* Ajusta el ancho según sea necesario */
+        }
+
+        .contenedor {
+            text-align: center;
+            /* Centra horizontalmente */
+        }
+
+        .contenedor img {
+            vertical-align: middle;
+            /* Centra verticalmente */
+        }
+
+        figcaption {
+            text-align: center;
+            font-style: italic;
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+            /* Espacio entre la imagen y la leyenda */
+        }
+
+        .redes-sociales a {
+            text-decoration: none;
+            /* Elimina el subrayado del enlace */
+            color: #cba568;
+            /* Color de los iconos */
+            margin-right: 10px;
+            /* Espacio entre los iconos */
+            font-size: 24px;
+            /* Tamaño de los iconos */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://vintrail.com/images/club_images/1629825517.jpg" alt="Viña Jardua">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="inicio">Inicio</a></li>
+            <li><a href="#quienes-somos">Quienes Somos</a></li>
+            <li><a href="#nuestra-viña">Nuestra Viña</a></li>
+            <li><a href="#nuestros-vinos">Nuestros Vinos</a></li>
+            <li><a href="#contactanos">Contactanos</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="content" id="quienes-somos">
+            <h2>Quiénes Somos</h2>
+            <p>Viña Boutique cercana al centro de la ciudad de Chillán.
+                Producimos vinos orgánicos a escala humana, incluyendo cepas ancestrales del valle del itata.
+                Realizamos enoturismo, ofreciendo un espacio que permite la realización de catas y maridajes, además
+                de
+                entregar información con respecto a proceso elaborativo del vino e historia del Valle del Itata.</p>
+            <p>
+                En nuestra viña, el vino es más que una bebida; es un puente que conecta el pasado con el presente, y
+                que nos inspira a soñar con un futuro lleno de autenticidad y armonía con la naturaleza. Agradecemos a
+                todos aquellos que nos acompañan en este viaje y que comparten nuestra pasión por los vinos autóctonos.
+            </p>
+            <p>¡Salud!</p>
+            <div class="contenedor">
+                <figure>
+                    <img src="img/medals.png" alt="Descripción de la imagen">
+                    <figcaption>Reinicio, ganador premio Catador años 2020, 2021, 2022 con la cepa Cinsault</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="content" id="nuestra-viña">
+            <h2>Nuestra Viña</h2>
+            <p>Somos más que productores de vino; somos guardianes de una herencia vitivinícola arraigada en el suelo
+                que pisamos y en las uvas que cosechamos. Cada botella que sale de nuestras bodegas lleva consigo el
+                legado de nuestros ancestros, así como el compromiso de preservar la pureza y la autenticidad de
+                nuestros vinos.</p>
+            <p>Nuestra pasión por lo autóctono se manifiesta en cada etapa del proceso de elaboración. Desde la
+                selección meticulosa de las cepas hasta la vinificación artesanal, buscamos resaltar los sabores y
+                aromas únicos que solo nuestras uvas pueden ofrecer. Nos enorgullece ofrecer vinos que hablan con la voz
+                del terruño, expresando la riqueza y la diversidad de nuestros viñedos.</p>
+            <div class="slideshow-container" id="carrusel1">
+                <!-- Imágenes del carrusel 1 -->
+                <div class="mySlides">
+                    <div class="img-container">
+                        <figure>
+                            <img src="https://rutadelvinoitata.com/wp-content/uploads/2021/07/IMG_0130-vina-jardua.jpg"
+                                style="width:50%">
+                            <figcaption>La gran sala Reinicio espera tu visita</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="img-container">
+                        <figure>
+                            <img src="https://rutadelvinoitata.com/wp-content/uploads/2021/07/01A1069-vina-jardua.jpg"
+                                style="width:50%">
+                            <figcaption>Una tradicion de años para un vino de calidad</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+
+                <div class="mySlides">
+                    <div class="img-container">
+                        <figure>
+                            <img src="https://rutadelvinoitata.com/wp-content/uploads/2021/07/01A1021-vina-jardua.jpg"
+                                style="width:50%">
+                            <figcaption>Vinos exclusivos embotellados de edicion limitada</figcaption>
+                        </figure>
+                    </div>
+
+                </div>
+
+                <div class="mySlides">
+                    <div class="img-container">
+                        <figure>
+                            <img src="https://rutadelvinoitata.com/wp-content/uploads/2021/07/01A0978-vina-jardua.jpg"
+                                style="width:50%">
+                            <figcaption>Recibimos tu evento y lo ejecutamos con los mas grandes estandares</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Botones para cambiar de imagen -->
+                <a class="prev" onclick="carrusel1.plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="carrusel1.plusSlides(1)">&#10095;</a>
+
+                <div class="dot-container" style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="content" id="nuestros-vinos">
+            <h2>Nuestros Vinos</h2>
+            <p>
+                Descubre la riqueza y la diversidad de nuestra colección de vinos, donde cada botella cuenta una
+                historia única y cautivadora. En nuestra viña, celebramos la variedad como un reflejo de la riqueza de
+                nuestro terroir y la creatividad de nuestros enólogos.
+            </p>
+            <p>
+                Desde los tintos robustos y elegantes hasta los blancos frescos y vibrantes, nuestra gama de vinos
+                ofrece una experiencia sensorial para todos los gustos y ocasiones. Cada cepa, cuidadosamente
+                seleccionada y cultivada con esmero, lleva consigo el carácter distintivo de nuestros viñedos y el arte
+                de nuestra tradición vinícola.</p>
+            <p>
+                Levanta tu copa y únete a nosotros en un brindis por la pasión, la tradición y el placer de compartir
+                momentos inolvidables alrededor de una buena botella de vino.
+            </p>
+            <div class="slideshow-container" id="carrusel2">
+                <!-- Imágenes del carrusel 2 -->
+                <div class="mySlides">
+                    <div class="img-container">
+                        <figure>
+                            <img src="https://images.vivino.com/labels/Vkc-v7riQuW22Q6ApKM4cQ.jpg" style="width:30%">
+                            <figcaption>Cepa Cinsault, 3 veces premiada en Catador mejor vino autoctono</figcaption>
+                        </figure>
+
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="img-container">
+                        <figure>
+                            <img src="https://images.vivino.com/thumbs/XFDaVBlUSkGevvSB9wnnIg_150x200.jpg"
+                                style="width:30%">
+                            <figcaption>Pais Carignan, cepa de edicion limitada unica en la zona </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="img-container">
+                        <figure>
+                            <img src="https://images.vivino.com/thumbs/CqIsNOwQRgCzhkYXDKhkuw_150x200.jpg"
+                                style="width:30%">
+                            <figcaption>Vino Pais, variedad de Pais Carignan una linea especial de una cosecha unica
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="img-container">
+                        <figure>
+                            <img src="https://images.vivino.com/thumbs/fDn5eRCqROySleBrPJUmgw_150x200.jpg"
+                                style="width:30%">
+                            <figcaption>Tempranillo, la gran sensacion de la ultima cosecha en la linea de tintos
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="img-container">
+                        <figure>
+                            <img src="https://images.vivino.com/thumbs/HXn-uSFRQEWMydKNCfYreQ_150x200.jpg"
+                                style="width:30%">
+                            <figcaption>Emsamblaje blanco, la mezcla perfecta de uvas para una fiesta de aromas
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Botones para cambiar de imagen -->
+                <a class="prev" onclick="carrusel2.plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="carrusel2.plusSlides(1)">&#10095;</a>
+
+                <div class="dot-container" style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="contacto" id="contactanos">
+            <div class="columna">
+                <h2>Contactanos</h2>
+                <form id="register-form">
+                    <label for="nombre">Nombre:</label><br>
+                    <input type="text" id="username" name="nombre" style="width:300px;" placeholder="Ingresa tu nombre"
+                        required><br>
+
+                    <label for="email">Correo electrónico:</label><br>
+                    <input type="email" id="email" name="email" style="width:300px;"
+                        placeholder="Ingresa tu correo electronico" required><br>
+
+                    <label for="telefono">Telefono:</label><br>
+                    <input type="text" id="phone" name="phone" style="width:300px;" placeholder="Ingresa tu telefono"
+                        required><br>
+
+                    <label for="mensaje">Mensaje:</label><br>
+                    <textarea id="mensaje" name="mensaje" style="width:320px;" rows="7" placeholder="Escribe tu mensaje"
+                        required></textarea><br>
+
+                    <br><button id="actionButton" onclick="message()">Enviar mensaje</button><br>
+                </form>
+            </div>
+            <div class="columna">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12808.205995203807!2d-72.2015016!3d-36.625147!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669270008f5ca65%3A0x252d6fe2e1bb44c!2sVi%C3%B1a%20Jardua!5e0!3m2!1ses!2scl!4v1708544731152!5m2!1ses!2scl"
+                    width="350px" height="350px" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <img src="https://vintrail.com/images/club_images/1629825517.jpg" alt="Viña Jardua"
+            style="width: 20%; height: 20%;">
+        <div id="redes-sociales">
+            <a href="https://www.instagram.com/vinajardua/" target="_blank">
+                <img src="img/instagram.png" alt="instagram" style="width: 5%; height: 5%;">
+            </a>
+        </div>
+        <p>Viña Jardua &copy; 2016. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function mapa() {
+            window.location.href = "https://www.google.com/maps/place/Vi%C3%B1a+Jardua/@-36.625147,-72.2015016,15z/data=!4m2!3m1!1s0x0:0x252d6fe2e1bb44c?sa=X&ved=2ahUKEwi6rv6mw72EAxUdKrkGHTNsAK4Q_BJ6BAgOEAA";
+        }
+        var carrusel1 = (function () {
+            var slideIndex = 1;
+            showSlides(slideIndex, 'carrusel1');
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n, 'carrusel1');
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n, 'carrusel1');
+            }
+
+            function showSlides(n, carruselId) {
+                var i;
+                var slides = document.getElementById(carruselId).getElementsByClassName("mySlides");
+                var dots = document.getElementById(carruselId).getElementsByClassName("dot");
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+
+            return {
+                plusSlides: plusSlides,
+                currentSlide: currentSlide
+            };
+        })();
+
+        var carrusel2 = (function () {
+            var slideIndex = 1;
+            showSlides(slideIndex, 'carrusel2');
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n, 'carrusel2');
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n, 'carrusel2');
+            }
+
+            function showSlides(n, carruselId) {
+                var i;
+                var slides = document.getElementById(carruselId).getElementsByClassName("mySlides");
+                var dots = document.getElementById(carruselId).getElementsByClassName("dot");
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+
+            return {
+                plusSlides: plusSlides,
+                currentSlide: currentSlide
+            };
+        })();
+    </script>
+</body>
+
+</html>
